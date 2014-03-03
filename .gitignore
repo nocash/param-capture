@@ -1,0 +1,4 @@
+.bundle/
+.ruby-gemset
+.ruby-version
+params/
