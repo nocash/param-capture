@@ -1,3 +1,5 @@
+require 'yaml'
+
 class ParamWriter
   attr_reader :params
 

@@ -1,8 +1,13 @@
 require 'sinatra'
 require 'haml'
-require 'yaml'
 
-require_relative './lib/param_persisters'
+require_relative './lib/param_reader'
+require_relative './lib/param_writer'
+require_relative './lib/saved_params'
+
+after do
+  SavedParams.cleanup!
+end
 
 get '/' do
   saved_params = ParamWriter.write(params)
