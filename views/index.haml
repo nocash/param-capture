@@ -1,9 +1,9 @@
 :markdown
-  You can find a copy of this page [here](/#{filepath}) or
+  You can find a copy of this page [here](#{permalink}) or
   view a [list of all files](/browse).
 
 %h3 Here are your parameters:
 
 %pre
   - params.each do |key, value|
-    [#{key}] => #{value}
+    [#{key}] => #{value}<br />

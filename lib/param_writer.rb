@@ -17,8 +17,12 @@ class ParamWriter
     self
   end
 
+  def permalink
+    '/' + File.basename(filepath)
+  end
+
   def filepath
-    @filepath ||= "params/#{timestamp}"
+    "params/#{timestamp}"
   end
 
   private
@@ -28,6 +32,6 @@ class ParamWriter
   end
 
   def timestamp
-    Time.now.strftime('%Y%m%d%H%M%S')
+    @timestamp ||= Time.now.strftime('%Y%m%d%H%M%S')
   end
 end

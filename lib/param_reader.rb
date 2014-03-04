@@ -3,12 +3,12 @@ require 'yaml'
 class ParamReader
   attr_reader :params
 
-  def self.read(filename)
-    new(filename).read
+  def self.read(filepath)
+    new(filepath).read
   end
 
-  def initialize(filename)
-    @filename = filename
+  def initialize(filepath)
+    @filepath = filepath
     @params = {}
   end
 
@@ -17,13 +17,13 @@ class ParamReader
     self
   end
 
-  def filepath
-    "params/#{filename}"
+  def permalink
+    '/' + File.basename(filepath)
   end
 
   private
 
-  attr_reader :filename
+  attr_reader :filepath
 
   def file
     @file ||= File.open(filepath, 'r')
