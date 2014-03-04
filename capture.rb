@@ -3,15 +3,25 @@ require 'haml'
 
 require_relative './lib/param_things'
 
+helpers do
+  def save_params(params)
+    saved_params = ParamWriter.write(params)
+    haml :index,
+      layout: :main,
+      locals: { params: saved_params.params, permalink: saved_params.permalink }
+  end
+end
+
 after do
   SavedParams.cleanup!
 end
 
 get '/' do
-  saved_params = ParamWriter.write(params)
-  haml :index,
-    layout: :main,
-    locals: { params: saved_params.params, permalink: saved_params.permalink }
+  save_params(params)
+end
+
+post '/' do
+  save_params(params)
 end
 
 get '/browse' do
