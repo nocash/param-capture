@@ -17,6 +17,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  haml
-  rdiscount
-  sinatra
+  haml (= 4.0.5)
+  rdiscount (= 2.1.7)
+  sinatra (= 1.4.4)
