@@ -1,7 +1,10 @@
 require 'sinatra'
 require 'haml'
 
-require_relative './lib/param_things'
+require_relative './lib/param_file'
+require_relative './lib/param_reader'
+require_relative './lib/param_writer'
+require_relative './lib/saved_params'
 
 helpers do
   def save_params(params)
