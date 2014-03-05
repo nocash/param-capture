@@ -4,7 +4,7 @@ class ParamFile
   end
 
   def name
-    time.strftime('%Y-%m-%d %H:%I:%S')
+    time.strftime('%Y-%m-%d %H:%M:%S')
   end
 
   def permalink
