@@ -1,4 +1,6 @@
 class SavedParams
+  MAX_AGE_DAYS = 30
+
   class << self
     def cleanup!
       Dir['params/*'].each do |path|
@@ -9,7 +11,7 @@ class SavedParams
     end
 
     def too_old(time)
-      old = Date.today - 2
+      old = Date.today - MAX_AGE_DAYS
       time < old.to_time
     end
   end
