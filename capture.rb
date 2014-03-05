@@ -28,7 +28,9 @@ post '/' do
 end
 
 get '/browse' do
-  files = Dir['params/*'].map { |path| ParamFile.new(path) }.reverse
+  files = Dir['params/*'].sort_by { |f| File.mtime(f) }.reverse
+  files.map! { |f| ParamFile.new(f) }
+
   haml :browse,
     layout: :main,
     locals: { files: files }
