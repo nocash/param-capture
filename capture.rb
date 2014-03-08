@@ -4,11 +4,10 @@ require 'haml'
 require_relative './lib/params'
 
 helpers do
-  def save_params(params)
-    saved_params = Params.save(params)
+  def display_params(params)
     haml :index,
       layout: :main,
-      locals: { params: saved_params.params, permalink: saved_params.permalink }
+      locals: { params: params.params, permalink: params.permalink }
   end
 end
 
@@ -17,11 +16,13 @@ after do
 end
 
 get '/' do
-  save_params(params)
+  saved_params = Params.save(params)
+  display_params(saved_params)
 end
 
 post '/' do
-  save_params(params)
+  saved_params = Params.save(params)
+  display_params(saved_params)
 end
 
 get '/browse' do
@@ -37,7 +38,5 @@ get %r{^/(\d{14})} do |filename|
   # filepath = "params/#{timestamp}"
   # raise Sinatra::NotFound unless File.exist? filepath
   saved_params = Params.load(filename)
-  haml :index,
-    layout: :main,
-    locals: { params: saved_params.params, permalink: saved_params.permalink }
+  display_params(saved_params)
 end
