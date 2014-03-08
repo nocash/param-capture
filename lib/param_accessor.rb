@@ -1,12 +1,13 @@
 class Params
   class ParamAccessor
+    private
+
+    class << self; attr_reader :filemode; end
+
     def self.file_access_mode(mode)
       @filemode = mode
     end
 
-    private
-
-    class << self; attr_reader :filemode; end
     attr_reader :filename
 
     def file
