@@ -1,7 +1,5 @@
 class Params
   class ParamAccessor
-    PARAM_DIR = 'params'
-
     def self.file_access_mode(mode)
       @filemode = mode
     end

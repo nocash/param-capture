@@ -4,6 +4,7 @@ require_relative './param_writer'
 
 class Params
   MAX_AGE_DAYS = 30
+  PARAM_DIR = 'params'
 
   class << self
     def save(params)
