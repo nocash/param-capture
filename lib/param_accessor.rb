@@ -6,7 +6,8 @@ class Params
 
     private
 
-    attr_reader :filemode, :filename
+    class << self; attr_reader :filemode; end
+    attr_reader :filename
 
     def file
       @file ||= File.open(filepath, filemode)
@@ -14,6 +15,10 @@ class Params
 
     def filepath
       File.join(PARAM_DIR, filename)
+    end
+
+    def filemode
+      self.class.filemode
     end
   end
 end
