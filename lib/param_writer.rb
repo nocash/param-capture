@@ -1,6 +1,6 @@
 require 'yaml'
 
-class ParamPersister
+class Params
   class ParamWriter
     attr_reader :params
 

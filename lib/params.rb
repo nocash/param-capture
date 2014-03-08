@@ -2,7 +2,7 @@ require_relative './param_file'
 require_relative './param_reader'
 require_relative './param_writer'
 
-class ParamPersister
+class Params
   MAX_AGE_DAYS = 30
 
   class << self

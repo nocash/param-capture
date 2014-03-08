@@ -1,11 +1,11 @@
 require 'sinatra'
 require 'haml'
 
-require_relative './lib/param_persister'
+require_relative './lib/params'
 
 helpers do
   def save_params(params)
-    saved_params = ParamPersister.save(params)
+    saved_params = Params.save(params)
     haml :index,
       layout: :main,
       locals: { params: saved_params.params, permalink: saved_params.permalink }
@@ -13,7 +13,7 @@ helpers do
 end
 
 after do
-  ParamPersister.cleanup!
+  Params.cleanup!
 end
 
 get '/' do
