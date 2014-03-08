@@ -5,9 +5,7 @@ require_relative './lib/params'
 
 helpers do
   def display_params(params)
-    haml :index,
-      layout: :main,
-      locals: { params: params.to_h, permalink: params.permalink }
+    haml :show, locals: { params: params.to_h, permalink: params.permalink }
   end
 end
 
@@ -29,9 +27,7 @@ get '/browse' do
   files = Dir['params/*'].sort_by { |f| File.mtime(f) }.reverse
   files.map! { |f| ParamFile.new(f) }
 
-  haml :browse,
-    layout: :main,
-    locals: { files: files }
+  haml :index, locals: { files: files }
 end
 
 get %r{^/(\d{14})} do |filename|
