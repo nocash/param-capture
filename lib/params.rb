@@ -1,6 +1,6 @@
-require_relative './param_file'
-require_relative './param_reader'
-require_relative './param_writer'
+require_relative './params/param_file'
+require_relative './params/param_reader'
+require_relative './params/param_writer'
 
 class Params
   MAX_AGE_DAYS = 30
