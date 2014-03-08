@@ -20,14 +20,14 @@ class Params
       @params
     end
 
+    def to_url
+      '/' + filename
+    end
+
     def write
       file << params.to_yaml
       file.close
       self
-    end
-
-    def permalink
-      '/' + filename
     end
 
     private

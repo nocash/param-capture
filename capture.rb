@@ -5,7 +5,7 @@ require_relative './lib/params'
 
 helpers do
   def display_params(params)
-    haml :show, locals: { params: params.to_h, permalink: params.permalink }
+    haml :show, locals: { params: params.to_h, permalink: params.to_url }
   end
 end
 

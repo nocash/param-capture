@@ -20,6 +20,10 @@ class Params
       @params
     end
 
+    def to_url
+      '/' + filename
+    end
+
     def read
       @params = inflate(file.read) if exist?
       self
@@ -27,10 +31,6 @@ class Params
 
     def exist?
       File.exist?(filepath)
-    end
-
-    def permalink
-      '/' + filename
     end
 
     private
