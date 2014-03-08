@@ -9,6 +9,7 @@ class Params
     end
 
     def initialize(params)
+      @filename = create_filename
       @params = params
     end
 
@@ -23,21 +24,23 @@ class Params
     end
 
     def permalink
-      '/' + File.basename(filepath)
+      '/' + filename
     end
 
     def filepath
-      "params/#{timestamp}"
+      File.join(PARAM_PATH, filename)
     end
 
     private
+
+    attr_reader :filename
 
     def file
       @file ||= File.open(filepath, 'w')
     end
 
-    def timestamp
-      @timestamp ||= Time.now.strftime('%Y%m%d%H%M%S')
+    def create_filename
+      Time.now.strftime('%Y%m%d%H%M%S')
     end
   end
 end
