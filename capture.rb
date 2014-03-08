@@ -1,10 +1,7 @@
 require 'sinatra'
 require 'haml'
 
-require_relative './lib/param_file'
-require_relative './lib/param_reader'
-require_relative './lib/param_writer'
-require_relative './lib/saved_params'
+require_relative './lib/param_persister'
 
 helpers do
   def save_params(params)
@@ -16,7 +13,7 @@ helpers do
 end
 
 after do
-  SavedParams.cleanup!
+  ParamPersister.cleanup!
 end
 
 get '/' do
