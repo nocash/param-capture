@@ -10,6 +10,10 @@ class Params
       ParamWriter.write(params)
     end
 
+    def load(filename)
+      ParamReader.read(filename)
+    end
+
     def cleanup!
       Dir['params/*'].each do |path|
         filename = path[/\d+$/]

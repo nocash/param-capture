@@ -1,35 +1,44 @@
 require 'yaml'
 
-class ParamReader
-  attr_reader :params
+class Params
+  class ParamReader
+    PARAM_PATH = 'params'
 
-  def self.read(filepath)
-    new(filepath).read
-  end
+    attr_reader :params
 
-  def initialize(filepath)
-    @filepath = filepath
-    @params = {}
-  end
+    def self.read(filename)
+      new(filename).read
+    end
 
-  def read
-    @params = inflate(file.read)
-    self
-  end
+    def initialize(filename)
+      @filename = filename
+      @params = {}
+    end
 
-  def permalink
-    '/' + File.basename(filepath)
-  end
+    def read
+      @params = inflate(file.read)
+      self
+    end
 
-  private
+    def permalink
+      '/' + filename
+    end
 
-  attr_reader :filepath
+    private
 
-  def file
-    @file ||= File.open(filepath, 'r')
-  end
+    attr_reader :filename
 
-  def inflate(string)
-    YAML.load(string)
+    def file
+      filepath = path_to(filename)
+      @file ||= File.open(filepath, 'r')
+    end
+
+    def path_to(filename)
+      File.join(PARAM_PATH, filename)
+    end
+
+    def inflate(string)
+      YAML.load(string)
+    end
   end
 end

@@ -33,12 +33,11 @@ get '/browse' do
     locals: { files: files }
 end
 
-get %r{^/(\d{14})} do |timestamp|
-  filepath = "params/#{timestamp}"
-  raise Sinatra::NotFound unless File.exist? filepath
-
-  read_params = ParamReader.read(filepath)
+get %r{^/(\d{14})} do |filename|
+  # filepath = "params/#{timestamp}"
+  # raise Sinatra::NotFound unless File.exist? filepath
+  saved_params = Params.load(filename)
   haml :index,
     layout: :main,
-    locals: { params: read_params.params, permalink: read_params.permalink }
+    locals: { params: saved_params.params, permalink: saved_params.permalink }
 end
