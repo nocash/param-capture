@@ -30,7 +30,7 @@ class Params
     private
 
     def files
-      Dir["#{PARAM_DIR}/*"].map { |f| ParamFile.new(f) }
+      Dir["#{PARAM_DIR}/*"].sort
     end
 
     def too_old(time)
