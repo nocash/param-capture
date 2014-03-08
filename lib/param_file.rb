@@ -1,22 +1,24 @@
-class ParamFile
-  def initialize(filepath)
-    @filepath = filepath
-  end
+class Params
+  class ParamFile
+    def initialize(filepath)
+      @filepath = filepath
+    end
 
-  def name
-    time.strftime('%Y-%m-%d %H:%M:%S')
-  end
+    def name
+      time.strftime('%Y-%m-%d %H:%M:%S')
+    end
 
-  def permalink
-    '/' + File.basename(filepath)
-  end
+    def permalink
+      '/' + File.basename(filepath)
+    end
 
-  private
+    private
 
-  attr_reader :filepath
+    attr_reader :filepath
 
-  def time
-    basename = File.basename(filepath)
-    Time.parse(basename)
+    def time
+      basename = File.basename(filepath)
+      Time.parse(basename)
+    end
   end
 end

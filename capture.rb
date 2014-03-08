@@ -24,10 +24,8 @@ post '/' do
 end
 
 get '/browse' do
-  files = Dir['params/*'].sort_by { |f| File.mtime(f) }.reverse
-  files.map! { |f| ParamFile.new(f) }
-
-  haml :index, locals: { files: files }
+  all_params = Params.all
+  haml :index, locals: { entries: all_params }
 end
 
 get %r{^/(\d{14})} do |filename|

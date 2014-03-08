@@ -14,6 +14,11 @@ class Params
       ParamReader.read(filename)
     end
 
+    def all
+      files = Dir['params/*'].sort_by { |f| File.mtime(f) }.reverse
+      files.map { |f| ParamFile.new(f) }
+    end
+
     def cleanup!
       Dir['params/*'].each do |path|
         filename = path[/\d+$/]
