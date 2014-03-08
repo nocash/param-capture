@@ -4,21 +4,24 @@ class Params
       @filepath = filepath
     end
 
-    def name
-      time.strftime('%Y-%m-%d %H:%M:%S')
+    def display_name
+      time_created.strftime('%Y-%m-%d %H:%M:%S')
     end
 
-    def permalink
-      '/' + File.basename(filepath)
+    def to_url
+      '/' + filename
     end
 
     private
 
     attr_reader :filepath
 
-    def time
-      basename = File.basename(filepath)
-      Time.parse(basename)
+    def time_created
+      Time.parse(filename)
+    end
+
+    def filename
+      File.basename(filepath)
     end
   end
 end

@@ -16,7 +16,6 @@ class Params
     end
 
     def all
-      files = Dir['params/*'].sort_by { |f| File.mtime(f) }.reverse
       files.map { |f| ParamFile.new(f) }
     end
 
@@ -29,6 +28,10 @@ class Params
     end
 
     private
+
+    def files
+      Dir["#{PARAM_DIR}/*"].map { |f| ParamFile.new(f) }
+    end
 
     def too_old(time)
       old = Date.today - MAX_AGE_DAYS
