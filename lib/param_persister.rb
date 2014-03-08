@@ -6,6 +6,10 @@ class ParamPersister
   MAX_AGE_DAYS = 30
 
   class << self
+    def save(params)
+      ParamWriter.write(params)
+    end
+
     def cleanup!
       Dir['params/*'].each do |path|
         filename = path[/\d+$/]
@@ -13,6 +17,8 @@ class ParamPersister
         File.unlink path if too_old(time)
       end
     end
+
+    private
 
     def too_old(time)
       old = Date.today - MAX_AGE_DAYS

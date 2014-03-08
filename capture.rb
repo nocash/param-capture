@@ -5,7 +5,7 @@ require_relative './lib/param_persister'
 
 helpers do
   def save_params(params)
-    saved_params = ParamWriter.write(params)
+    saved_params = ParamPersister.save(params)
     haml :index,
       layout: :main,
       locals: { params: saved_params.params, permalink: saved_params.permalink }
