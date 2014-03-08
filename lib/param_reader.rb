@@ -1,8 +1,9 @@
+require_relative 'param_accessor'
 require 'yaml'
 
 class Params
-  class ParamReader
-    PARAM_PATH = 'params'
+  class ParamReader < ParamAccessor
+    file_access_mode 'r'
 
     attr_reader :params
 
@@ -33,16 +34,6 @@ class Params
     end
 
     private
-
-    attr_reader :filename
-
-    def file
-      @file ||= File.open(filepath, 'r')
-    end
-
-    def filepath
-      File.join(PARAM_PATH, filename)
-    end
 
     def inflate(string)
       YAML.load(string)

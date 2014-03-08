@@ -1,7 +1,10 @@
+require_relative 'param_accessor'
 require 'yaml'
 
 class Params
-  class ParamWriter
+  class ParamWriter < ParamAccessor
+    file_access_mode 'w'
+
     attr_reader :params
 
     def self.write(params)
@@ -27,17 +30,7 @@ class Params
       '/' + filename
     end
 
-    def filepath
-      File.join(PARAM_PATH, filename)
-    end
-
     private
-
-    attr_reader :filename
-
-    def file
-      @file ||= File.open(filepath, 'w')
-    end
 
     def create_filename
       Time.now.strftime('%Y%m%d%H%M%S')
