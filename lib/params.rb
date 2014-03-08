@@ -30,7 +30,8 @@ class Params
     private
 
     def files
-      Dir["#{PARAM_DIR}/*"].sort
+      # Sort most recent entries first.
+      Dir["#{PARAM_DIR}/*"].sort.reverse
     end
 
     def too_old(time)
