@@ -35,8 +35,7 @@ get '/browse' do
 end
 
 get %r{^/(\d{14})} do |filename|
-  # filepath = "params/#{timestamp}"
-  # raise Sinatra::NotFound unless File.exist? filepath
   saved_params = Params.load(filename)
+  raise Sinatra::NotFound unless saved_params.exist?
   display_params(saved_params)
 end

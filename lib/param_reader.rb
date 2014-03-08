@@ -20,8 +20,12 @@ class Params
     end
 
     def read
-      @params = inflate(file.read)
+      @params = inflate(file.read) if exist?
       self
+    end
+
+    def exist?
+      File.exist?(filepath)
     end
 
     def permalink
@@ -33,11 +37,10 @@ class Params
     attr_reader :filename
 
     def file
-      filepath = path_to(filename)
       @file ||= File.open(filepath, 'r')
     end
 
-    def path_to(filename)
+    def filepath
       File.join(PARAM_PATH, filename)
     end
 
