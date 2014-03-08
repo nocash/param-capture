@@ -15,6 +15,10 @@ class Params
       @params = {}
     end
 
+    def to_h
+      @params
+    end
+
     def read
       @params = inflate(file.read)
       self

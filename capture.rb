@@ -7,7 +7,7 @@ helpers do
   def display_params(params)
     haml :index,
       layout: :main,
-      locals: { params: params.params, permalink: params.permalink }
+      locals: { params: params.to_h, permalink: params.permalink }
   end
 end
 

@@ -12,6 +12,10 @@ class Params
       @params = params
     end
 
+    def to_h
+      @params
+    end
+
     def write
       file << params.to_yaml
       file.close
